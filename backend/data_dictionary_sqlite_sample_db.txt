@@ -1,0 +1,267 @@
+================================================================================
+DATABASE DATA DICTIONARY
+================================================================================
+
+Database Type: SQLITE
+Total Tables: 6
+Total Relationships: 5
+
+================================================================================
+TABLE: categories
+================================================================================
+
+COLUMNS:
+--------------------------------------------------------------------------------
+  • category_id
+    Type: INTEGER
+    Constraints: NULL [PRIMARY KEY]
+    Sample Values: 1, 2, 3, 4, 5
+
+  • category_name
+    Type: VARCHAR(50)
+    Constraints: NOT NULL
+    Sample Values: Electronics, Clothing, Books, Home & Garden, Sports
+
+  • description
+    Type: TEXT
+    Constraints: NULL
+    Sample Values: Electronic devices and accessories, Fashion and apparel, Books and magazines, Home improvement and garden supplies, Sports equipment and accessories
+
+
+PRIMARY KEY:
+--------------------------------------------------------------------------------
+  category_id
+
+ESTIMATED ROW COUNT: 7
+
+
+================================================================================
+TABLE: customers
+================================================================================
+
+COLUMNS:
+--------------------------------------------------------------------------------
+  • customer_id
+    Type: INTEGER
+    Constraints: NULL [PRIMARY KEY]
+    Sample Values: 22, 34, 92, 81, 3
+
+  • first_name
+    Type: VARCHAR(50)
+    Constraints: NOT NULL
+    Sample Values: Patricia, Linda, Barbara, Charles, James
+
+  • last_name
+    Type: VARCHAR(50)
+    Constraints: NOT NULL
+    Sample Values: Smith, Hernandez, Rodriguez, Williams, Wilson
+
+  • email
+    Type: VARCHAR(100)
+    Constraints: NOT NULL
+    Sample Values: barbara.gonzalez21@example.com, barbara.hernandez33@example.com, barbara.martinez91@example.com, barbara.miller80@example.com, barbara.rodriguez2@example.com
+
+  • phone
+    Type: VARCHAR(20)
+    Constraints: NULL
+    Sample Values: +1-634-903-3871, +1-411-971-4731, +1-781-825-8487, +1-912-589-9734, +1-659-788-7657
+
+  • region_id
+    Type: INTEGER
+    Constraints: NULL
+    Sample Values: 2, 3, 4, 7, 6
+
+  • registration_date
+    Type: DATE
+    Constraints: NOT NULL
+    Sample Values: 2024-01-19, 2025-10-09, 2024-01-08, 2024-10-08, 2024-02-06
+
+
+PRIMARY KEY:
+--------------------------------------------------------------------------------
+  customer_id
+
+FOREIGN KEYS (RELATIONSHIPS):
+--------------------------------------------------------------------------------
+  • region_id → regions(region_id)
+
+ESTIMATED ROW COUNT: 100
+
+
+================================================================================
+TABLE: order_items
+================================================================================
+
+COLUMNS:
+--------------------------------------------------------------------------------
+  • order_item_id
+    Type: INTEGER
+    Constraints: NULL [PRIMARY KEY]
+    Sample Values: 1, 2, 3, 4, 5
+
+  • order_id
+    Type: INTEGER
+    Constraints: NOT NULL
+    Sample Values: 1, 2, 3, 4, 5
+
+  • product_id
+    Type: INTEGER
+    Constraints: NOT NULL
+    Sample Values: 1, 8, 25, 9, 18
+
+  • quantity
+    Type: INTEGER
+    Constraints: NOT NULL
+    Sample Values: 3, 2, 1
+
+  • unit_price
+    Type: DECIMAL(10, 2)
+    Constraints: NOT NULL
+    Sample Values: 1299.99, 19.99, 29.99, 49.99, 89.99
+
+
+PRIMARY KEY:
+--------------------------------------------------------------------------------
+  order_item_id
+
+FOREIGN KEYS (RELATIONSHIPS):
+--------------------------------------------------------------------------------
+  • order_id → orders(order_id)
+  • product_id → products(product_id)
+
+ESTIMATED ROW COUNT: 507
+
+
+================================================================================
+TABLE: orders
+================================================================================
+
+COLUMNS:
+--------------------------------------------------------------------------------
+  • order_id
+    Type: INTEGER
+    Constraints: NULL [PRIMARY KEY]
+    Sample Values: 1, 2, 3, 4, 5
+
+  • customer_id
+    Type: INTEGER
+    Constraints: NOT NULL
+    Sample Values: 29, 62, 26, 100, 33
+
+  • order_date
+    Type: DATE
+    Constraints: NOT NULL
+    Sample Values: 2025-10-16, 2024-12-22, 2025-10-15, 2025-07-14, 2025-10-20
+
+  • total_amount
+    Type: DECIMAL(10, 2)
+    Constraints: NOT NULL
+    Sample Values: 3899.9700000000003, 99.96, 429.93, 339.95, 249.97000000000003
+
+  • status
+    Type: VARCHAR(20)
+    Constraints: NOT NULL
+    Sample Values: completed, shipped, processing, cancelled
+
+
+PRIMARY KEY:
+--------------------------------------------------------------------------------
+  order_id
+
+FOREIGN KEYS (RELATIONSHIPS):
+--------------------------------------------------------------------------------
+  • customer_id → customers(customer_id)
+
+ESTIMATED ROW COUNT: 200
+
+
+================================================================================
+TABLE: products
+================================================================================
+
+COLUMNS:
+--------------------------------------------------------------------------------
+  • product_id
+    Type: INTEGER
+    Constraints: NULL [PRIMARY KEY]
+    Sample Values: 1, 2, 3, 4, 5
+
+  • product_name
+    Type: VARCHAR(100)
+    Constraints: NOT NULL
+    Sample Values: Laptop Pro 15", Wireless Mouse, USB-C Hub, Bluetooth Headphones, Smartphone X
+
+  • category_id
+    Type: INTEGER
+    Constraints: NULL
+    Sample Values: 1, 2, 3, 4, 5
+
+  • price
+    Type: DECIMAL(10, 2)
+    Constraints: NOT NULL
+    Sample Values: 1299.99, 29.99, 49.99, 89.99, 899.99
+
+  • stock_quantity
+    Type: INTEGER
+    Constraints: NOT NULL
+    Sample Values: 45, 150, 200, 75, 30
+
+  • created_at
+    Type: TIMESTAMP
+    Constraints: NULL DEFAULT: CURRENT_TIMESTAMP
+    Sample Values: 2025-11-13 06:41:01
+
+
+PRIMARY KEY:
+--------------------------------------------------------------------------------
+  product_id
+
+FOREIGN KEYS (RELATIONSHIPS):
+--------------------------------------------------------------------------------
+  • category_id → categories(category_id)
+
+ESTIMATED ROW COUNT: 25
+
+
+================================================================================
+TABLE: regions
+================================================================================
+
+COLUMNS:
+--------------------------------------------------------------------------------
+  • region_id
+    Type: INTEGER
+    Constraints: NULL [PRIMARY KEY]
+    Sample Values: 1, 2, 3, 4, 5
+
+  • region_name
+    Type: VARCHAR(50)
+    Constraints: NOT NULL
+    Sample Values: North America, Europe, Asia, Australia
+
+  • country
+    Type: VARCHAR(50)
+    Constraints: NOT NULL
+    Sample Values: USA, Canada, UK, Germany, Japan
+
+
+PRIMARY KEY:
+--------------------------------------------------------------------------------
+  region_id
+
+ESTIMATED ROW COUNT: 7
+
+
+================================================================================
+DATABASE RELATIONSHIPS SUMMARY
+================================================================================
+
+  customers(region_id) → regions(region_id)
+  order_items(order_id) → orders(order_id)
+  order_items(product_id) → products(product_id)
+  orders(customer_id) → customers(customer_id)
+  products(category_id) → categories(category_id)
+
+================================================================================
+END OF DATA DICTIONARY
+================================================================================
