@@ -1,7 +1,7 @@
  # LLM Powered SQL Optimization: Automating Query Performance Tuning with AI  
 ### Worklet SRM SAMSUNG PRISM 25APD01SRM
 
-<img width="1095" alt="Screenshot 2026-01-02 at 11 15 53 AM" src="https://github.ecodesamsung.com/SRIB-PRISM/SRM_25APBD01SRM_LLM_Powered_SQL_Optimization_Automating_Query_performance_Tuning_with_AI/assets/36619/ec44be81-631b-4b08-95ae-2e0fc5c1d3fe">
+<img width="1205" height="668" alt="image" src="https://github.com/user-attachments/assets/5561bd43-5b7b-402f-a885-6976823887ae" />
 
 ---
 
